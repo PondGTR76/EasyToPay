@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LUXE Collection - Premium Bags & Accessories</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'sans': ['Inter', 'Helvetica', 'Arial', 'sans-serif']
+                    },
+                    colors: {
+                        'luxury-gold': '#D4AF37',
+                        'luxury-green': '#2D5016'
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-white text-black font-sans">
+    <!-- Header -->
+    <header class="border-b border-gray-200 py-6">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center">
+                <h1 class="text-2xl font-bold tracking-wide">LUXE COLLECTION</h1>
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#" class="text-gray-600 hover:text-luxury-gold transition-colors">Bags</a>
+                    <a href="#" class="text-gray-600 hover:text-luxury-gold transition-colors">Accessories</a>
+                    <a href="#" class="text-gray-600 hover:text-luxury-gold transition-colors">About</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <!-- Home Page - Product Grid -->
+        <div id="homePage">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-light mb-4">Premium Collection</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Discover our curated selection of luxury bags and accessories, crafted with the finest materials and attention to detail.</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                <!-- Product Cards -->
+                <div class="group cursor-pointer" onclick="openProduct('classic-tote')">
+                    <div class="aspect-square bg-gray-50 rounded-lg overflow-hidden mb-4 group-hover:shadow-lg transition-shadow">
+                        <svg class="w-full h-full p-8" viewBox="0 0 200 200" fill="none">
+                            <rect x="40" y="60" width="120" height="80" rx="8" fill="#1a1a1a" stroke="#333" stroke-width="2"/>
+                            <path d="M60 60 L60 40 Q60 30 70 30 L130 30 Q140 30 140 40 L140 60" stroke="#333" stroke-width="2" fill="none"/>
+                            <circle cx="70" cy="100" r="3" fill="#D4AF37"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-medium mb-1">Classic Leather Tote</h3>
+                    <p class="text-gray-600 text-sm mb-2">Code: A01</p>
+                    <p class="font-semibold">$299</p>
+                </div>
+
+                <div class="group cursor-pointer" onclick="openProduct('mini-crossbody')">
+                    <div class="aspect-square bg-gray-50 rounded-lg overflow-hidden mb-4 group-hover:shadow-lg transition-shadow">
+                        <svg class="w-full h-full p-8" viewBox="0 0 200 200" fill="none">
+                            <rect x="60" y="80" width="80" height="60" rx="6" fill="#8B4513" stroke="#654321" stroke-width="2"/>
+                            <path d="M70 80 Q70 70 80 70 L120 70 Q130 70 130 80" stroke="#654321" stroke-width="2" fill="none"/>
+                            <circle cx="100" cy="110" r="4" fill="#D4AF37"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-medium mb-1">Mini Crossbody Bag</h3>
+                    <p class="text-gray-600 text-sm mb-2">Code: B01</p>
+                    <p class="font-semibold">$189</p>
+                </div>
+
+                <div class="group cursor-pointer" onclick="openProduct('evening-clutch')">
+                    <div class="aspect-square bg-gray-50 rounded-lg overflow-hidden mb-4 group-hover:shadow-lg transition-shadow">
+                        <svg class="w-full h-full p-8" viewBox="0 0 200 200" fill="none">
+                            <rect x="50" y="90" width="100" height="40" rx="4" fill="#2c2c2c" stroke="#1a1a1a" stroke-width="2"/>
+                            <rect x="55" y="95" width="90" height="30" rx="2" fill="#D4AF37" opacity="0.3"/>
+                            <circle cx="140" cy="110" r="2" fill="#D4AF37"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-medium mb-1">Evening Clutch</h3>
+                    <p class="text-gray-600 text-sm mb-2">Code: C01</p>
+                    <p class="font-semibold">$149</p>
+                </div>
+
+                <div class="group cursor-pointer" onclick="openProduct('business-briefcase')">
+                    <div class="aspect-square bg-gray-50 rounded-lg overflow-hidden mb-4 group-hover:shadow-lg transition-shadow">
+                        <svg class="w-full h-full p-8" viewBox="0 0 200 200" fill="none">
+                            <rect x="40" y="70" width="120" height="80" rx="6" fill="#1a1a1a" stroke="#333" stroke-width="2"/>
+                            <rect x="45" y="75" width="110" height="70" rx="3" fill="#2a2a2a"/>
+                            <rect x="90" y="60" width="20" height="20" rx="2" fill="#333"/>
+                            <circle cx="60" cy="110" r="2" fill="#D4AF37"/>
+                            <circle cx="140" cy="110" r="2" fill="#D4AF37"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-medium mb-1">Business Briefcase</h3>
+                    <p class="text-gray-600 text-sm mb-2">Code: D01</p>
+                    <p class="font-semibold">$399</p>
+                </div>
+
+                <div class="group cursor-pointer" onclick="openProduct('weekend-duffle')">
+                    <div class="aspect-square bg-gray-50 rounded-lg overflow-hidden mb-4 group-hover:shadow-lg transition-shadow">
+                        <svg class="w-full h-full p-8" viewBox="0 0 200 200" fill="none">
+                            <ellipse cx="100" cy="110" rx="60" ry="30" fill="#654321" stroke="#4a2c17" stroke-width="2"/>
+                            <path d="M60 110 Q60 90 80 90 L120 90 Q140 90 140 110" stroke="#4a2c17" stroke-width="2" fill="none"/>
+                            <rect x="95" y="80" width="10" height="15" rx="2" fill="#D4AF37"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-medium mb-1">Weekend Duffle</h3>
+                    <p class="text-gray-600 text-sm mb-2">Code: E01</p>
+                    <p class="font-semibold">$259</p>
+                </div>
+
+                <div class="group cursor-pointer" onclick="openProduct('chain-shoulder')">
+                    <div class="aspect-square bg-gray-50 rounded-lg overflow-hidden mb-4 group-hover:shadow-lg transition-shadow">
+                        <svg class="w-full h-full p-8" viewBox="0 0 200 200" fill="none">
+                            <rect x="70" y="90" width="60" height="50" rx="5" fill="#8B0000" stroke="#660000" stroke-width="2"/>
+                            <path d="M80 90 Q80 70 90 70 L110 70 Q120 70 120 90" stroke="#D4AF37" stroke-width="3" fill="none"/>
+                            <circle cx="100" cy="115" r="3" fill="#D4AF37"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-medium mb-1">Chain Shoulder Bag</h3>
+                    <p class="text-gray-600 text-sm mb-2">Code: F01</p>
+                    <p class="font-semibold">$219</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Product Detail Page -->
+        <div id="productPage" class="hidden">
+            <button onclick="goHome()" class="flex items-center text-gray-600 hover:text-luxury-gold mb-8 transition-colors">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+                Back to Collection
+            </button>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- Product Image -->
+                <div class="aspect-square bg-gray-50 rounded-lg overflow-hidden">
+                    <div id="productImage" class="w-full h-full flex items-center justify-center p-12">
+                        <!-- Dynamic product image will be inserted here -->
+                    </div>
+                </div>
+
+                <!-- Product Details -->
+                <div class="flex flex-col justify-center">
+                    <h1 id="productTitle" class="text-3xl font-light mb-4">Classic Leather Tote</h1>
+                    <p id="productPrice" class="text-2xl font-semibold mb-6">$299</p>
+                    <p id="productCode" class="text-gray-600 mb-8">Product Code: A01</p>
+
+                    <!-- Color Selection -->
+                    <div class="mb-8">
+                        <h3 class="text-lg font-medium mb-4">Available Colors</h3>
+                        <div id="colorOptions" class="flex space-x-3">
+                            <!-- Dynamic color options will be inserted here -->
+                        </div>
+                    </div>
+
+                    <!-- Contact Button -->
+                    <button id="contactBtn" onclick="contactViaLine()" class="bg-luxury-green hover:bg-green-800 text-white py-4 px-8 rounded-lg font-medium transition-colors">
+                        Contact via LINE
+                    </button>
+
+                    <p class="text-sm text-gray-500 mt-4">Click to inquire about this product via LINE messaging</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Product data
+        const products = {
+            'classic-tote': {
+                name: 'Classic Leather Tote',
+                price: '$299',
+                colors: {
+                    'Black': { code: 'A01', color: '#1a1a1a' },
+                    'Brown': { code: 'A02', color: '#8B4513' },
+                    'Navy': { code: 'A03', color: '#1e3a8a' }
+                },
+                defaultColor: 'Black'
+            },
+            'mini-crossbody': {
+                name: 'Mini Crossbody Bag',
+                price: '$189',
+                colors: {
+                    'Brown': { code: 'B01', color: '#8B4513' },
+                    'Black': { code: 'B02', color: '#1a1a1a' },
+                    'Red': { code: 'B03', color: '#dc2626' }
+                },
+                defaultColor: 'Brown'
+            },
+            'evening-clutch': {
+                name: 'Evening Clutch',
+                price: '$149',
+                colors: {
+                    'Black': { code: 'C01', color: '#1a1a1a' },
+                    'Gold': { code: 'C02', color: '#D4AF37' },
+                    'Silver': { code: 'C03', color: '#C0C0C0' }
+                },
+                defaultColor: 'Black'
+            },
+            'business-briefcase': {
+                name: 'Business Briefcase',
+                price: '$399',
+                colors: {
+                    'Black': { code: 'D01', color: '#1a1a1a' },
+                    'Brown': { code: 'D02', color: '#8B4513' }
+                },
+                defaultColor: 'Black'
+            },
+            'weekend-duffle': {
+                name: 'Weekend Duffle',
+                price: '$259',
+                colors: {
+                    'Brown': { code: 'E01', color: '#654321' },
+                    'Black': { code: 'E02', color: '#1a1a1a' },
+                    'Olive': { code: 'E03', color: '#556B2F' }
+                },
+                defaultColor: 'Brown'
+            },
+            'chain-shoulder': {
+                name: 'Chain Shoulder Bag',
+                price: '$219',
+                colors: {
+                    'Burgundy': { code: 'F01', color: '#8B0000' },
+                    'Black': { code: 'F02', color: '#1a1a1a' },
+                    'Cream': { code: 'F03', color: '#F5F5DC' }
+                },
+                defaultColor: 'Burgundy'
+            }
+        };
+
+        let currentProduct = null;
+        let selectedColor = null;
+
+        function openProduct(productId) {
+            currentProduct = products[productId];
+            selectedColor = currentProduct.defaultColor;
+            
+            document.getElementById('homePage').classList.add('hidden');
+            document.getElementById('productPage').classList.remove('hidden');
+            
+            updateProductDisplay();
+        }
+
+        function goHome() {
+            document.getElementById('productPage').classList.add('hidden');
+            document.getElementById('homePage').classList.remove('hidden');
+        }
+
+        function updateProductDisplay() {
+            if (!currentProduct) return;
+
+            // Update product info
+            document.getElementById('productTitle').textContent = currentProduct.name;
+            document.getElementById('productPrice').textContent = currentProduct.price;
+            document.getElementById('productCode').textContent = `Product Code: ${currentProduct.colors[selectedColor].code}`;
+
+            // Update product image based on selected color
+            updateProductImage();
+
+            // Update color options
+            const colorOptions = document.getElementById('colorOptions');
+            colorOptions.innerHTML = '';
+            
+            Object.keys(currentProduct.colors).forEach(colorName => {
+                const colorData = currentProduct.colors[colorName];
+                const button = document.createElement('button');
+                button.className = `w-12 h-12 rounded-full border-2 transition-all ${
+                    selectedColor === colorName ? 'border-luxury-gold scale-110' : 'border-gray-300 hover:border-gray-400'
+                }`;
+                button.style.backgroundColor = colorData.color;
+                button.onclick = () => selectColor(colorName);
+                button.title = `${colorName} - ${colorData.code}`;
+                colorOptions.appendChild(button);
+            });
+        }
+
+        function selectColor(colorName) {
+            selectedColor = colorName;
+            updateProductDisplay();
+        }
+
+        function updateProductImage() {
+            const imageContainer = document.getElementById('productImage');
+            const color = currentProduct.colors[selectedColor].color;
+            
+            // Generate different SVG based on product type
+            let svg = '';
+            
+            if (currentProduct.name.includes('Tote')) {
+                svg = `
+                    <svg class="w-full h-full" viewBox="0 0 200 200" fill="none">
+                        <rect x="40" y="60" width="120" height="80" rx="8" fill="${color}" stroke="${adjustBrightness(color, -20)}" stroke-width="2"/>
+                        <path d="M60 60 L60 40 Q60 30 70 30 L130 30 Q140 30 140 40 L140 60" stroke="${adjustBrightness(color, -20)}" stroke-width="2" fill="none"/>
+                        <circle cx="70" cy="100" r="3" fill="#D4AF37"/>
+                    </svg>
+                `;
+            } else if (currentProduct.name.includes('Crossbody')) {
+                svg = `
+                    <svg class="w-full h-full" viewBox="0 0 200 200" fill="none">
+                        <rect x="60" y="80" width="80" height="60" rx="6" fill="${color}" stroke="${adjustBrightness(color, -20)}" stroke-width="2"/>
+                        <path d="M70 80 Q70 70 80 70 L120 70 Q130 70 130 80" stroke="${adjustBrightness(color, -20)}" stroke-width="2" fill="none"/>
+                        <circle cx="100" cy="110" r="4" fill="#D4AF37"/>
+                    </svg>
+                `;
+            } else if (currentProduct.name.includes('Clutch')) {
+                svg = `
+                    <svg class="w-full h-full" viewBox="0 0 200 200" fill="none">
+                        <rect x="50" y="90" width="100" height="40" rx="4" fill="${color}" stroke="${adjustBrightness(color, -20)}" stroke-width="2"/>
+                        <rect x="55" y="95" width="90" height="30" rx="2" fill="#D4AF37" opacity="0.3"/>
+                        <circle cx="140" cy="110" r="2" fill="#D4AF37"/>
+                    </svg>
+                `;
+            } else if (currentProduct.name.includes('Briefcase')) {
+                svg = `
+                    <svg class="w-full h-full" viewBox="0 0 200 200" fill="none">
+                        <rect x="40" y="70" width="120" height="80" rx="6" fill="${color}" stroke="${adjustBrightness(color, -20)}" stroke-width="2"/>
+                        <rect x="45" y="75" width="110" height="70" rx="3" fill="${adjustBrightness(color, 10)}"/>
+                        <rect x="90" y="60" width="20" height="20" rx="2" fill="${adjustBrightness(color, -20)}"/>
+                        <circle cx="60" cy="110" r="2" fill="#D4AF37"/>
+                        <circle cx="140" cy="110" r="2" fill="#D4AF37"/>
+                    </svg>
+                `;
+            } else if (currentProduct.name.includes('Duffle')) {
+                svg = `
+                    <svg class="w-full h-full" viewBox="0 0 200 200" fill="none">
+                        <ellipse cx="100" cy="110" rx="60" ry="30" fill="${color}" stroke="${adjustBrightness(color, -20)}" stroke-width="2"/>
+                        <path d="M60 110 Q60 90 80 90 L120 90 Q140 90 140 110" stroke="${adjustBrightness(color, -20)}" stroke-width="2" fill="none"/>
+                        <rect x="95" y="80" width="10" height="15" rx="2" fill="#D4AF37"/>
+                    </svg>
+                `;
+            } else if (currentProduct.name.includes('Chain')) {
+                svg = `
+                    <svg class="w-full h-full" viewBox="0 0 200 200" fill="none">
+                        <rect x="70" y="90" width="60" height="50" rx="5" fill="${color}" stroke="${adjustBrightness(color, -20)}" stroke-width="2"/>
+                        <path d="M80 90 Q80 70 90 70 L110 70 Q120 70 120 90" stroke="#D4AF37" stroke-width="3" fill="none"/>
+                        <circle cx="100" cy="115" r="3" fill="#D4AF37"/>
+                    </svg>
+                `;
+            }
+            
+            imageContainer.innerHTML = svg;
+        }
+
+        function adjustBrightness(hex, percent) {
+            // Convert hex to RGB
+            const num = parseInt(hex.replace("#", ""), 16);
+            const amt = Math.round(2.55 * percent);
+            const R = (num >> 16) + amt;
+            const G = (num >> 8 & 0x00FF) + amt;
+            const B = (num & 0x0000FF) + amt;
+            return "#" + (0x1000000 + (R < 255 ? R < 1 ? 0 : R : 255) * 0x10000 +
+                (G < 255 ? G < 1 ? 0 : G : 255) * 0x100 +
+                (B < 255 ? B < 1 ? 0 : B : 255)).toString(16).slice(1);
+        }
+
+        function contactViaLine() {
+            if (!currentProduct || !selectedColor) return;
+            
+            const productCode = currentProduct.colors[selectedColor].code;
+            const message = `Hi! I'm interested in the ${currentProduct.name} in ${selectedColor} (Code: ${productCode}). Could you please provide more information about availability and purchase options?`;
+            
+            // Create LINE URL with pre-filled message
+            const lineUrl = `https://line.me/R/msg/text/?${encodeURIComponent(message)}`;
+            
+            // Open LINE in new window/tab
+            window.open(lineUrl, '_blank');
+        }
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9743369851b57b5e',t:'MTc1NjA0MjMyMS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
