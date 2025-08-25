@@ -29,6 +29,19 @@
             color: #9ca3af;
             font-size: 14px;
         }
+        // เพิ่ม style ในส่วน <style> ที่มีอยู่แล้ว
+.color-options-container {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 4px;
+    margin: 0 -4px;
+}
+
+.color-options-scroll {
+    display: flex;
+    gap: 0.5rem;
+    min-width: min-content;
+}
     </style>
 </head>
 <body class="bg-gray-50 font-thai">
@@ -166,63 +179,78 @@
         </div>
 
         <!-- Product Detail Page -->
-        <div id="product-page" class="page hidden">
-            <div class="max-w-6xl mx-auto px-4 py-8">
-                <button onclick="goBack()" class="mb-4 text-gray-600 hover:text-gray-900 flex items-center">
-                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
-                    </svg>
-                    กลับ
-                </button>
+<!-- ค้นหาส่วน Product Detail Page แล้วแทนที่ทั้งหมดด้วยโค้ดนี้ -->
+<div id="product-page" class="page hidden">
+    <div class="max-w-6xl mx-auto px-4 py-8 pb-24 sm:pb-8"> <!-- เพิ่ม padding-bottom สำหรับปุ่มล่าง -->
+        <button onclick="goBack()" class="mb-4 text-gray-600 hover:text-gray-900 flex items-center">
+            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+            </svg>
+            กลับ
+        </button>
+        
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <!-- Product Images -->
+            <div>
+                <div class="mb-4">
+                    <img id="main-image" src="" alt="" class="w-full h-96 object-cover rounded-lg">
+                </div>
+                <div id="thumbnail-images" class="flex gap-2 overflow-x-auto">
+                    <!-- Thumbnails will be loaded here -->
+                </div>
+            </div>
+
+            <!-- Product Info -->
+            <div>
+                <h1 id="product-title" class="text-2xl font-bold mb-4"></h1>
+                <p id="product-price" class="text-3xl font-bold text-gray-900 mb-4"></p>
+                <div id="product-category" class="mb-4"></div>
+                <div id="product-description" class="text-gray-600 mb-6"></div>
                 
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                    <!-- Product Images -->
-                    <div>
-                        <div class="mb-4">
-                            <img id="main-image" src="" alt="" class="w-full h-96 object-cover rounded-lg">
-                        </div>
-                        <div id="thumbnail-images" class="flex gap-2 overflow-x-auto">
-                            <!-- Thumbnails will be loaded here -->
-                        </div>
-                    </div>
-
-                    <!-- Product Info -->
-                    <div>
-                        <h1 id="product-title" class="text-2xl font-bold mb-4"></h1>
-                        <p id="product-price" class="text-3xl font-bold text-gray-900 mb-4"></p>
-                        <div id="product-category" class="mb-4"></div>
-                        <div id="product-description" class="text-gray-600 mb-6"></div>
-                        
-                        <!-- Color Selection -->
-                        <div class="mb-6">
-                            <label class="block text-sm font-medium mb-2">เลือกสี</label>
-                            <div id="color-options" class="flex gap-2">
-                                <!-- Color options will be loaded here -->
-                            </div>
-                        </div>
-
-                        <!-- Quantity -->
-                        <div class="mb-6">
-                            <label class="block text-sm font-medium mb-2">จำนวน</label>
-                            <div class="flex items-center gap-3">
-                                <button onclick="changeQuantity(-1)" class="w-10 h-10 border rounded-md flex items-center justify-center hover:bg-gray-50">-</button>
-                                <span id="quantity" class="text-lg font-semibold min-w-[2rem] text-center">1</span>
-                                <button onclick="changeQuantity(1)" class="w-10 h-10 border rounded-md flex items-center justify-center hover:bg-gray-50">+</button>
-                            </div>
-                        </div>
-
-                        <!-- Add to Cart Button -->
-                        <button onclick="addToCart()" class="w-full bg-gray-900 text-white py-3 rounded-lg font-semibold hover:bg-gray-800 transition-colors mb-4">
-                            เพิ่มลงตะกร้า
-                        </button>
-
-                        <!-- Category Link -->
-                        <div id="category-link" class="text-sm text-gray-600">
-                            <!-- Category link will be loaded here -->
+                <!-- Color Selection -->
+                <div class="mb-6">
+                    <label class="block text-sm font-medium mb-2">เลือกสี</label>
+                    <div class="color-options-container">
+                        <div id="color-options" class="color-options-scroll">
+                            <!-- Color options will be loaded here -->
                         </div>
                     </div>
                 </div>
+
+                <!-- Quantity -->
+                <div class="mb-6">
+                    <label class="block text-sm font-medium mb-2">จำนวน</label>
+                    <div class="flex items-center gap-3">
+                        <button onclick="changeQuantity(-1)" class="w-10 h-10 border rounded-md flex items-center justify-center hover:bg-gray-50">-</button>
+                        <span id="quantity" class="text-lg font-semibold min-w-[2rem] text-center">1</span>
+                        <button onclick="changeQuantity(1)" class="w-10 h-10 border rounded-md flex items-center justify-center hover:bg-gray-50">+</button>
+                    </div>
+                </div>
+
+                <!-- Add to Cart Button - แสดงเฉพาะบน Desktop -->
+                <div class="hidden lg:block">
+                    <button onclick="addToCart()" class="w-full bg-gray-900 text-white py-3 rounded-lg font-semibold hover:bg-gray-800 transition-colors mb-4">
+                        เพิ่มลงตะกร้า
+                    </button>
+                </div>
+
+                <!-- Category Link -->
+                <div id="category-link" class="text-sm text-gray-600">
+                    <!-- Category link will be loaded here -->
+                </div>
             </div>
+        </div>
+    </div>
+
+    <!-- Mobile Sticky Add to Cart -->
+    <div class="fixed bottom-0 left-0 right-0 p-4 bg-white border-t lg:hidden">
+        <div class="max-w-6xl mx-auto">
+            <button onclick="addToCart()" class="w-full bg-gray-900 text-white py-3 rounded-lg font-semibold">
+                เพิ่มลงตะกร้า
+            </button>
+        </div>
+    </div>
+</div>
 
             <!-- Mobile Sticky Add to Cart -->
         <div class="lg:hidden fixed bottom-0 left-0 right-0 bg-white border-t p-4 z-40">
@@ -378,38 +406,38 @@
         </button>
     </div>
     <!-- Cart Drawer -->
-    <div id="cart-drawer" class="fixed inset-0 z-50 hidden">
-        <div class="absolute inset-0 bg-black bg-opacity-50" onclick="toggleCart()"></div>
-        <div class="absolute right-0 top-0 h-full w-full max-w-md bg-white shadow-xl">
-            <div class="flex items-center justify-between p-4 border-b">
-                <h3 class="text-lg font-semibold">ตะกร้าสินค้า</h3>
-                <button onclick="toggleCart()" class="text-gray-500 hover:text-gray-700">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                    </svg>
-                </button>
-            </div>
-            <div class="flex-1 overflow-y-auto p-4">
-                <div id="drawer-cart-items">
-                    <!-- Cart items will be loaded here -->
-                </div>
-            </div>
-            <div class="border-t p-4">
-                <div class="flex justify-between items-center mb-4">
-                    <span class="font-semibold">ยอดรวม</span>
-                    <span id="drawer-cart-total" class="font-bold">฿0.00</span>
-                </div>
-                <button onclick="showPage('cart'); toggleCart();" class="w-full bg-gray-900 text-white py-2 rounded-lg font-semibold">
-                    ดูตะกร้าสินค้า
-                </button>
+<div id="cart-drawer" class="fixed inset-0 z-50 hidden">
+    <div class="absolute inset-0 bg-black bg-opacity-50" onclick="toggleCart()"></div>
+    <div class="absolute inset-x-0 top-1/2 -translate-y-1/2 mx-auto w-full max-w-md bg-white shadow-xl rounded-lg">
+        <div class="flex items-center justify-between p-4 border-b">
+            <h3 class="text-lg font-semibold">ตะกร้าสินค้า</h3>
+            <button onclick="toggleCart()" class="text-gray-500 hover:text-gray-700">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+        </div>
+        <div class="max-h-[60vh] overflow-y-auto p-4">
+            <div id="drawer-cart-items">
+                <!-- Cart items will be loaded here -->
             </div>
         </div>
+        <div class="border-t p-4">
+            <div class="flex justify-between items-center mb-4">
+                <span class="font-semibold">ยอดรวม</span>
+                <span id="drawer-cart-total" class="font-bold">฿0.00</span>
+            </div>
+            <button onclick="showPage('cart'); toggleCart();" class="w-full bg-gray-900 text-white py-2 rounded-lg font-semibold">
+                ดูตะกร้าสินค้า
+            </button>
+        </div>
     </div>
+</div>
 
     <script>
         // Store Configuration
         const STORE_CONFIG = {
-            LINE_URL: 'https://line.me/ti/p/@bagshop', // เปลี่ยนเป็น LINE ID ของร้าน
+            LINE_URL: 'https://lin.ee/t3Q1ODf', // เปลี่ยนเป็น LINE ID ของร้าน
             BRAND_NAME: 'BagShop',
             ADDRESS_NOTE: 'กรุณาระบุที่อยู่ให้ชัดเจนเพื่อการจัดส่ง'
         };
