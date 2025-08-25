@@ -18,31 +18,48 @@
         }
     </script>
     <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        body { font-family: 'Sarabun', sans-serif; }
-        .category-image { 
-            background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
-            min-height: 120px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #9ca3af;
-            font-size: 14px;
-        }
-        // เพิ่ม style ในส่วน <style> ที่มีอยู่แล้ว
+<style>
+/* แก้ไขส่วน CSS สำหรับ color options */
 .color-options-container {
-    overflow-x: auto;
+    position: relative;
+    width: 100%;
+    max-height: 120px; /* เพิ่มความสูงสูงสุด 2 แถว */
+    overflow-y: auto; /* เพิ่ม scroll แนวตั้ง */
+    overflow-x: hidden; /* ปิด scroll แนวนอน */
     -webkit-overflow-scrolling: touch;
-    padding: 4px;
-    margin: 0 -4px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
 
 .color-options-scroll {
     display: flex;
+    flex-wrap: wrap; /* ทำให้แสดงหลายแถวได้ */
     gap: 0.5rem;
-    min-width: min-content;
+    padding: 0.25rem;
 }
-    </style>
+
+.color-option {
+    flex: 0 1 auto; /* ปรับ flex basis เป็น auto */
+    padding: 0.5rem 1rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.375rem;
+    font-size: 0.875rem;
+    white-space: nowrap;
+    transition: all 0.2s;
+    margin-bottom: 0.5rem; /* เพิ่มระยะห่างด้านล่าง */
+}
+
+.color-option.selected {
+    background-color: #111827;
+    color: white;
+    border-color: #111827;
+}
+
+/* ซ่อน scrollbar */
+.color-options-container::-webkit-scrollbar {
+    display: none;
+}
+</style>
 </head>
 <body class="bg-gray-50 font-thai">
     <!-- Navigation -->
@@ -180,44 +197,46 @@
 
         <!-- Product Detail Page -->
 <!-- ค้นหาส่วน Product Detail Page แล้วแทนที่ทั้งหมดด้วยโค้ดนี้ -->
-<div id="product-page" class="page hidden">
-    <div class="max-w-6xl mx-auto px-4 py-8 pb-24 sm:pb-8"> <!-- เพิ่ม padding-bottom สำหรับปุ่มล่าง -->
+<!-- แก้ไขส่วน Product Detail Page -->
+<div id="product-page" class="page hidden pb-20 sm:pb-0">
+    <!-- ส่วนเนื้อหาหลัก -->
+    <div class="max-w-6xl mx-auto px-4 py-8">
+        <!-- ปุ่มกลับ -->
         <button onclick="goBack()" class="mb-4 text-gray-600 hover:text-gray-900 flex items-center">
             <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
             </svg>
             กลับ
         </button>
-        
+
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <!-- Product Images -->
-            <div>
-                <div class="mb-4">
-                    <img id="main-image" src="" alt="" class="w-full h-96 object-cover rounded-lg">
+            <!-- รูปภาพสินค้า -->
+            <div class="sticky top-20">
+                <div class="mb-4 aspect-w-1 aspect-h-1">
+                    <img id="main-image" src="" alt="" class="w-full h-full object-cover rounded-lg">
                 </div>
-                <div id="thumbnail-images" class="flex gap-2 overflow-x-auto">
-                    <!-- Thumbnails will be loaded here -->
+                <div id="thumbnail-images" class="flex gap-2 overflow-x-auto hide-scrollbar">
+                    <!-- Thumbnails -->
                 </div>
             </div>
 
-            <!-- Product Info -->
+            <!-- ข้อมูลสินค้า -->
             <div>
                 <h1 id="product-title" class="text-2xl font-bold mb-4"></h1>
                 <p id="product-price" class="text-3xl font-bold text-gray-900 mb-4"></p>
-                <div id="product-category" class="mb-4"></div>
                 <div id="product-description" class="text-gray-600 mb-6"></div>
                 
-                <!-- Color Selection -->
+                <!-- เลือกสี -->
                 <div class="mb-6">
                     <label class="block text-sm font-medium mb-2">เลือกสี</label>
                     <div class="color-options-container">
                         <div id="color-options" class="color-options-scroll">
-                            <!-- Color options will be loaded here -->
+                            <!-- Color options -->
                         </div>
                     </div>
                 </div>
 
-                <!-- Quantity -->
+                <!-- จำนวน -->
                 <div class="mb-6">
                     <label class="block text-sm font-medium mb-2">จำนวน</label>
                     <div class="flex items-center gap-3">
@@ -227,12 +246,25 @@
                     </div>
                 </div>
 
-                <!-- Add to Cart Button - แสดงเฉพาะบน Desktop -->
+                <!-- ปุ่มเพิ่มลงตะกร้า (Desktop) -->
                 <div class="hidden lg:block">
-                    <button onclick="addToCart()" class="w-full bg-gray-900 text-white py-3 rounded-lg font-semibold hover:bg-gray-800 transition-colors mb-4">
+                    <button onclick="addToCart()" class="w-full bg-gray-900 text-white py-3 rounded-lg font-semibold hover:bg-gray-800">
                         เพิ่มลงตะกร้า
                     </button>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ปุ่มเพิ่มลงตะกร้า (Mobile) -->
+    <div class="fixed bottom-0 left-0 right-0 p-4 bg-white border-t z-40 lg:hidden">
+        <div class="max-w-6xl mx-auto">
+            <button onclick="addToCart()" class="w-full bg-gray-900 text-white py-3 rounded-lg font-semibold">
+                เพิ่มลงตะกร้า
+            </button>
+        </div>
+    </div>
+</div>
 
                 <!-- Category Link -->
                 <div id="category-link" class="text-sm text-gray-600">
@@ -406,30 +438,38 @@
         </button>
     </div>
     <!-- Cart Drawer -->
+<!-- Cart Drawer -->
 <div id="cart-drawer" class="fixed inset-0 z-50 hidden">
     <div class="absolute inset-0 bg-black bg-opacity-50" onclick="toggleCart()"></div>
-    <div class="absolute inset-x-0 top-1/2 -translate-y-1/2 mx-auto w-full max-w-md bg-white shadow-xl rounded-lg">
-        <div class="flex items-center justify-between p-4 border-b">
-            <h3 class="text-lg font-semibold">ตะกร้าสินค้า</h3>
-            <button onclick="toggleCart()" class="text-gray-500 hover:text-gray-700">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                </svg>
-            </button>
-        </div>
-        <div class="max-h-[60vh] overflow-y-auto p-4">
-            <div id="drawer-cart-items">
-                <!-- Cart items will be loaded here -->
+    <div class="absolute inset-y-0 right-0 w-full max-w-md bg-white shadow-xl">
+        <div class="flex flex-col h-full">
+            <!-- หัวตะกร้า -->
+            <div class="flex items-center justify-between p-4 border-b">
+                <h3 class="text-lg font-semibold">ตะกร้าสินค้า</h3>
+                <button onclick="toggleCart()" class="text-gray-500 hover:text-gray-700">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
             </div>
-        </div>
-        <div class="border-t p-4">
-            <div class="flex justify-between items-center mb-4">
-                <span class="font-semibold">ยอดรวม</span>
-                <span id="drawer-cart-total" class="font-bold">฿0.00</span>
+
+            <!-- รายการสินค้า -->
+            <div class="flex-1 overflow-y-auto p-4">
+                <div id="drawer-cart-items">
+                    <!-- Cart items -->
+                </div>
             </div>
-            <button onclick="showPage('cart'); toggleCart();" class="w-full bg-gray-900 text-white py-2 rounded-lg font-semibold">
-                ดูตะกร้าสินค้า
-            </button>
+
+            <!-- ส่วนล่าง -->
+            <div class="border-t p-4">
+                <div class="flex justify-between items-center mb-4">
+                    <span class="font-semibold">ยอดรวม</span>
+                    <span id="drawer-cart-total" class="font-bold"></span>
+                </div>
+                <button onclick="showPage('cart'); toggleCart();" class="w-full bg-gray-900 text-white py-3 rounded-lg font-semibold">
+                    ดูตะกร้าสินค้า
+                </button>
+            </div>
         </div>
     </div>
 </div>
@@ -573,79 +613,54 @@ const PRODUCTS = [
             showPage(previousPage);
         }
 
-        function showProduct(productId) {
-            const product = PRODUCTS.find(p => p.id === productId);
-            if (!product) return;
-            
-            currentProduct = product;
-            currentQuantity = 1;
-            selectedColor = product.colors[0];
-            
-            // Update product page content
-            document.getElementById('product-title').textContent = product.name;
-            document.getElementById('product-price').textContent = formatPrice(product.price);
-            document.getElementById('product-description').textContent = product.description;
-            document.getElementById('quantity').textContent = currentQuantity;
-            
-            // Load main image
-            document.getElementById('main-image').src = product.images[0];
-            document.getElementById('main-image').alt = product.name;
-            
-            // Load thumbnail images
-            const thumbnailContainer = document.getElementById('thumbnail-images');
-            thumbnailContainer.innerHTML = product.images.map((img, index) => 
-                `<img src="${img}" alt="${product.name}" class="w-16 h-16 object-cover rounded cursor-pointer border-2 ${index === 0 ? 'border-gray-900' : 'border-gray-200'}" onclick="selectImage(${index})">`
-            ).join('');
-            
-            // Load color options
-            const colorContainer = document.getElementById('color-options');
-            colorContainer.innerHTML = product.colors.map((color, index) => 
-                `<button onclick="selectColor('${color}')" class="px-4 py-2 border rounded-md ${index === 0 ? 'border-gray-900 bg-gray-900 text-white' : 'border-gray-300 hover:border-gray-400'}">${color}</button>`
-            ).join('');
-            
-            // Load category info
-            const categoryNames = {
-                'handbag': 'กระเป๋าถือ',
-                'crossbody': 'สะพายข้าง', 
-                'backpack': 'กระเป๋าเป้',
-                'wallet': 'กระเป๋าสตางค์'
-            };
-            
-            document.getElementById('product-category').innerHTML = 
-                `<span class="inline-block bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm">${categoryNames[product.category]}</span>`;
-            
-            document.getElementById('category-link').innerHTML = 
-                `<a href="#" onclick="filterByCategory('${product.category}')" class="text-blue-600 hover:text-blue-800">ดูสินค้าในหมวด${categoryNames[product.category]}ทั้งหมด →</a>`;
-            
-            // Add JSON-LD structured data
-            const jsonLd = {
-                "@context": "https://schema.org/",
-                "@type": "Product",
-                "name": product.name,
-                "image": product.images,
-                "description": product.description,
-                "offers": {
-                    "@type": "Offer",
-                    "price": product.price,
-                    "priceCurrency": "THB"
-                },
-                "category": categoryNames[product.category]
-            };
-            
-            // Remove existing JSON-LD
-            const existingJsonLd = document.querySelector('script[type="application/ld+json"]');
-            if (existingJsonLd) {
-                existingJsonLd.remove();
-            }
-            
-            // Add new JSON-LD
-            const script = document.createElement('script');
-            script.type = 'application/ld+json';
-            script.textContent = JSON.stringify(jsonLd);
-            document.head.appendChild(script);
-            
-            showPage('product');
-        }
+function showProduct(productId) {
+    const product = PRODUCTS.find(p => p.id === productId);
+    if (!product) {
+        console.error('Product not found:', productId);
+        return;
+    }
+    
+    currentProduct = product;
+    currentQuantity = 1;
+    selectedColor = product.colors[0];
+    
+    // Update product page content
+    document.getElementById('main-image').src = product.images[0];
+    document.getElementById('main-image').alt = product.name;
+    document.getElementById('product-title').textContent = product.name;
+    document.getElementById('product-price').textContent = formatPrice(product.price);
+    document.getElementById('product-description').textContent = product.description;
+    document.getElementById('quantity').textContent = '1';
+
+    // Load color options
+const colorContainer = document.getElementById('color-options');
+if (colorContainer) {
+    colorContainer.innerHTML = product.colors.map(color => `
+        <button 
+            onclick="selectColor('${color}')" 
+            class="color-option ${color === selectedColor ? 'selected' : ''}"
+        >
+            ${color}
+        </button>
+    `).join('');
+}
+
+    // Load thumbnail images
+    const thumbnailContainer = document.getElementById('thumbnail-images');
+    if (thumbnailContainer) {
+        thumbnailContainer.innerHTML = product.images.map((img, index) => `
+            <img 
+                src="${img}" 
+                alt="${product.name}" 
+                class="w-16 h-16 object-cover rounded cursor-pointer ${index === 0 ? 'border-2 border-gray-900' : 'border-2 border-transparent'}"
+                onclick="selectImage(${index})"
+            >
+        `).join('');
+    }
+
+    // Show product page
+    showPage('product');
+}
 
         function selectImage(index) {
             if (!currentProduct) return;
@@ -658,18 +673,38 @@ const PRODUCTS = [
             });
         }
 
-        function selectColor(color) {
-            selectedColor = color;
-            
-            // Update color button styles
-            document.querySelectorAll('#color-options button').forEach(btn => {
-                if (btn.textContent === color) {
-                    btn.className = 'px-4 py-2 border rounded-md border-gray-900 bg-gray-900 text-white';
-                } else {
-                    btn.className = 'px-4 py-2 border rounded-md border-gray-300 hover:border-gray-400';
-                }
-            });
+// เพิ่มฟังก์ชันในส่วน script
+function selectColor(color) {
+    selectedColor = color;
+    
+    // อัพเดทการแสดงผลปุ่มสีทั้งหมด
+    document.querySelectorAll('#color-options .color-option').forEach(btn => {
+        if (btn.textContent.trim() === color) {
+            btn.classList.add('selected');
+        } else {
+            btn.classList.remove('selected');
         }
+    });
+}
+
+// ปรับปรุงฟังก์ชัน updateCartUI
+function updateCartUI() {
+    const cartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+    
+    // อัพเดทตัวเลขบนไอคอนตะกร้า
+    const countElements = document.querySelectorAll('#cart-count, #floating-cart-count');
+    countElements.forEach(elem => {
+        if (cartCount > 0) {
+            elem.textContent = cartCount;
+            elem.classList.remove('hidden');
+        } else {
+            elem.classList.add('hidden');
+        }
+    });
+
+    // อัพเดทตะกร้า drawer
+    updateDrawerCart();
+}
 
         function changeQuantity(delta) {
             const newQuantity = currentQuantity + delta;
@@ -693,27 +728,34 @@ const PRODUCTS = [
             applyFilters();
         }
 
-        function createProductCard(product) {
-            const categoryNames = {
-                'handbag': 'กระเป๋าถือ',
-                'crossbody': 'สะพายข้าง',
-                'backpack': 'กระเป๋าเป้', 
-                'wallet': 'กระเป๋าสตางค์'
-            };
-            
-            return `
-                <div class="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow cursor-pointer" onclick="showProduct(${product.id})">
-                    <img src="${product.images[0]}" alt="${product.name}" class="w-full h-48 object-cover">
-                    <div class="p-4">
-                        <div class="flex justify-between items-start mb-2">
-                            <h3 class="font-semibold text-sm line-clamp-2">${product.name}</h3>
-                            <span class="bg-gray-100 text-gray-600 px-2 py-1 rounded text-xs ml-2 whitespace-nowrap">${categoryNames[product.category]}</span>
-                        </div>
-                        <p class="text-lg font-bold text-gray-900">${formatPrice(product.price)}</p>
-                    </div>
+function createProductCard(product) {
+    const categoryNames = {
+        'handbag': 'กระเป๋าถือ',
+        'crossbody': 'สะพายข้าง',
+        'backpack': 'กระเป๋าเป้', 
+        'wallet': 'กระเป๋าสตางค์'
+    };
+    
+    return `
+        <div class="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow cursor-pointer" 
+            onclick="showProduct(${product.id})" 
+            role="button"
+            tabindex="0">
+            <div class="aspect-w-1 aspect-h-1">
+                <img src="${product.images[0]}" alt="${product.name}" class="w-full h-48 object-cover">
+            </div>
+            <div class="p-4">
+                <div class="flex justify-between items-start mb-2">
+                    <h3 class="font-semibold text-sm line-clamp-2">${product.name}</h3>
+                    <span class="bg-gray-100 text-gray-600 px-2 py-1 rounded text-xs ml-2 whitespace-nowrap">
+                        ${categoryNames[product.category]}
+                    </span>
                 </div>
-            `;
-        }
+                <p class="text-lg font-bold text-gray-900">${formatPrice(product.price)}</p>
+            </div>
+        </div>
+    `;
+}
 
         // Filter Functions
         function filterByCategory(category) {
